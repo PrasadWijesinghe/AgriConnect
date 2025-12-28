@@ -59,20 +59,125 @@ nav a.active, nav a:hover {
 /* Hero Section - Dark overlay on farm background */
 .hero {
   text-align: center;
-  padding: 10rem 5% 8rem;
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1501436513145-1a294d681bb6?auto=format&fit=crop&q=80') center/cover no-repeat;
+  padding: 6rem 5% 6rem;
+  background: linear-gradient(135deg, rgba(0,0,0,0.40), rgba(0,123,255,0.25)), center/cover no-repeat;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 15px rgba(40,167,69,0.3);
 }
 
 .hero h1 {
-  font-size: 3.8rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  text-shadow: 0 6px 16px rgba(0,0,0,0.5);
+  letter-spacing: 0.5px;
+  line-height: 1.15;
 }
 
 .hero p {
-  font-size: 1.6rem;
-  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  font-weight: 500;
+  max-width: 700px;
+}
+
+.hero-cta-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 1.3rem 2.8rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  box-shadow: 0 10px 25px rgba(40,167,69,0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(40,167,69,0.45);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border: 2px solid rgba(255,255,255,0.5);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.25);
+  border-color: rgba(255,255,255,0.8);
+  transform: translateY(-5px);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: bounce 2.5s infinite;
+}
+
+.scroll-indicator p {
+  margin: 0;
+  font-size: 1rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.scroll-indicator span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
 }
 
 /* Stats Section - White cards with green numbers */
@@ -87,38 +192,50 @@ nav a.active, nav a:hover {
 
 .stat-card {
   background: #fff;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  padding: 3rem 2.5rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
   text-align: center;
-  min-width: 250px;
+  min-width: 280px;
+  border-top: 4px solid #28a745;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(40, 167, 69, 0.2);
 }
 
 .stat-card h3 {
-  font-size: 3rem;
+  font-size: 3.2rem;
   color: #28a745;
   margin-bottom: 0.8rem;
+  font-weight: 800;
 }
 
 .stat-card p {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
 }
 
 .stat-card small {
-  color: #666;
-  font-size: 0.9rem;
+  color: #888;
+  font-size: 0.95rem;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 /* AgriBot Section - Rounded chat with online badge */
 .agribot {
   max-width: 800px;
-  margin: 4rem auto;
-  padding: 2rem;
+  margin: 5rem auto;
+  padding: 2.5rem;
   background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 22px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
   position: relative;
+  border: 2px solid #f0f0f0;
 }
 
 .agribot h4 {
@@ -166,9 +283,11 @@ nav a.active, nav a:hover {
 }
 
 h2 {
-  font-size: 2.8rem;
+  font-size: 3rem;
   color: #007bff;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
 }
 
 /* Feature List */
@@ -201,12 +320,19 @@ h2 {
 
 .auction-card, .instant-sale-card {
   background: white;
-  padding: 3rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 3.5rem 3rem;
+  border-radius: 22px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
   width: 45%;
   min-width: 400px;
   text-align: left;
+  border: 1px solid #f0f0f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auction-card:hover, .instant-sale-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 45px rgba(0,0,0,0.15);
 }
 
 .auction-card h3, .instant-sale-card h3 {
@@ -243,20 +369,24 @@ h2 {
 /* Buttons & Links */
 button, .auction-card a, .instant-sale-card a {
   display: inline-block;
-  background: #28a745;
+  background: linear-gradient(135deg, #28a745, #20c997);
   color: white;
-  padding: 1rem 2.5rem;
+  padding: 1.1rem 3rem;
   border-radius: 50px;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   margin-top: 2rem;
-  transition: all 0.3s;
-  box-shadow: 0 6px 15px rgba(40,167,69,0.3);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 20px rgba(40,167,69,0.35);
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
 }
 
 button:hover, .auction-card a:hover, .instant-sale-card a:hover {
-  background: #218838;
-  transform: translateY(-3px);
+  background: linear-gradient(135deg, #218838, #1aa179);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(40,167,69,0.45);
 }
 
 /* Steps List */
@@ -293,14 +423,15 @@ button:hover, .auction-card a:hover, .instant-sale-card a:hover {
 /* Testimonial */
 .testimonial {
   max-width: 900px;
-  margin: 4rem auto;
-  padding: 3rem;
-  background: #e8f5e8;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  font-size: 1.4rem;
+  margin: 5rem auto;
+  padding: 3.5rem;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f9f0 100%);
+  border-radius: 22px;
+  box-shadow: 0 12px 35px rgba(40,167,69,0.15);
+  font-size: 1.5rem;
   font-style: italic;
   text-align: left;
+  border-left: 5px solid #28a745;
 }
 
 .testimonial p:last-of-type {
@@ -365,15 +496,17 @@ button:hover, .auction-card a:hover, .instant-sale-card a:hover {
 
 .step-card {
   background: white;
-  padding: 3rem 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 3rem 2.5rem;
+  border-radius: 22px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
   width: 300px;
-  transition: transform 0.3s;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+  border: 1px solid #f5f5f5;
 }
 
 .step-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px);
+  box-shadow: 0 18px 45px rgba(0,123,255,0.15);
 }
 
 .step-number {
@@ -408,18 +541,20 @@ button:hover, .auction-card a:hover, .instant-sale-card a:hover {
 .big-btn {
   background: linear-gradient(135deg, #28a745, #20c997);
   color: white;
-  font-size: 1.5rem;
-  padding: 1.5rem 3rem;
+  font-size: 1.6rem;
+  padding: 1.6rem 3.5rem;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(40,167,69,0.3);
-  transition: all 0.3s;
+  box-shadow: 0 12px 30px rgba(40,167,69,0.35);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .big-btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(40,167,69,0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 42px rgba(40,167,69,0.45);
 }
 
 /* Responsive */

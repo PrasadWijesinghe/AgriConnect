@@ -14,7 +14,6 @@ function Header() {
         <ul>
           <li><Link to="/" className={isActive('/')}>Home</Link></li>
           <li><Link to="/crop-recommendations" className={isActive('/crop-recommendations')}>Crop Recommendations</Link></li>
-          <li><Link to="/ai-chatbot" className={isActive('/ai-chatbot')}>AI Chatbot</Link></li>
           <li><Link to="/marketplaces" className={isActive('/marketplaces')}>Marketplaces</Link></li>
           <li><Link to="/harvest-requests" className={isActive('/harvest-requests')}>Harvest Requests</Link></li>
           <li><Link to="/inventory" className={isActive('/inventory')}>Inventory</Link></li>

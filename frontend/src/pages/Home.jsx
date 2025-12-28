@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom';
+import assets from '../assets/assets';
 
 function Home() {
   return (
     <main className="home">
-      <section className="hero">
-        <h1>Grow Smarter Sell Better Earn More</h1>
+      <section className="hero" style={{ backgroundImage: `url(${assets.bg_home})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'fixed' }}>
+        <div className="hero-badge">SMART FARMING PLATFORM</div>
+        <h1>Grow Smarter<br/>Sell Better<br/>Earn More</h1>
         <p>AI-powered crop recommendations and real-time market intelligence for modern farmers</p>
-        <button>Scroll to explore</button>
+        <div className="hero-cta-buttons">
+          <Link to="/crop-recommendations" className="btn-primary">Get Crop Recommendations →</Link>
+          <Link to="/marketplaces" className="btn-secondary">Explore Marketplace</Link>
+        </div>
+        <div className="scroll-indicator">
+          <p>Scroll to explore</p>
+          <span>↓</span>
+        </div>
       </section>
 
       <section className="stats">
