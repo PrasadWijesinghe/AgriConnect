@@ -1,89 +1,105 @@
 function HarvestRequests() {
   return (
-    <main className="harvest-requests-page">
-      <section className="harvest-hero">
-        <h1>Harvest Requests</h1>
-        <p>Browse buyer requests and respond with your available harvest</p>
-        
-        <div className="filters">
-          <button className="filter-btn active">All Requests</button>
-          <button className="filter-btn">Urgent</button>
-          <button className="filter-btn">Open</button>
-          <span className="request-count">6 requests available</span>
+    <main className="mx-auto max-w-6xl px-6 py-16">
+      <section className="rounded-3xl bg-white px-8 py-10 shadow-xl ring-1 ring-gray-100">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-green-600">Marketplace</p>
+            <h1 className="text-4xl font-extrabold text-gray-900">Harvest Requests</h1>
+            <p className="text-gray-600">Browse buyer requests and respond with your available harvest.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <button className="rounded-full bg-green-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-green-700">All Requests</button>
+            <button className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-800 ring-1 ring-gray-200 hover:bg-gray-50">Urgent</button>
+            <button className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-800 ring-1 ring-gray-200 hover:bg-gray-50">Open</button>
+            <span className="ml-2 rounded-full bg-gray-100 px-3 py-1 text-sm font-semibold text-gray-700">6 requests available</span>
+          </div>
         </div>
       </section>
 
-      <section className="requests-list">
-        <div className="request-card">
-          <span className="status open">OPEN</span>
-          <h3>Tomatoes</h3>
-          <p className="buyer">Green Valley Supermarket</p>
-          <p><strong>Quantity:</strong> 1000 kg</p>
-          <p><strong>Price Range:</strong> LKR 400-450/kg</p>
-          <p><strong>Location:</strong> Colombo</p>
-          <p><strong>Deadline:</strong> 3 days</p>
-          <p className="requirements"><strong>Requirements:</strong> Grade A quality, organic preferred</p>
-          <button className="respond-btn">Respond to Request</button>
+      <section className="mt-10 grid gap-6 md:grid-cols-2">
+        <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
+          <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">OPEN</span>
+          <h3 className="mt-3 text-2xl font-bold text-gray-900">Tomatoes</h3>
+          <p className="text-sm font-semibold text-gray-500">Green Valley Supermarket</p>
+          <div className="mt-3 space-y-1 text-gray-700">
+            <p><strong>Quantity:</strong> 1000 kg</p>
+            <p><strong>Price Range:</strong> LKR 400-450/kg</p>
+            <p><strong>Location:</strong> Colombo</p>
+            <p><strong>Deadline:</strong> 3 days</p>
+            <p className="text-sm text-gray-600"><strong>Requirements:</strong> Grade A quality, organic preferred</p>
+          </div>
+          <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Respond to Request</button>
         </div>
 
-        <div className="request-card">
-          <span className="status open">OPEN</span>
-          <h3>Carrots</h3>
-          <p className="buyer">Fresh Foods Ltd</p>
-          <p><strong>Quantity:</strong> 500 kg</p>
-          <p><strong>Price Range:</strong> LKR 250-280/kg</p>
-          <p><strong>Location:</strong> Kandy</p>
-          <p><strong>Deadline:</strong> 5 days</p>
-          <p className="requirements"><strong>Requirements:</strong> Medium to large size, fresh harvest</p>
-          <button className="respond-btn">Respond to Request</button>
+        <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
+          <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">OPEN</span>
+          <h3 className="mt-3 text-2xl font-bold text-gray-900">Carrots</h3>
+          <p className="text-sm font-semibold text-gray-500">Fresh Foods Ltd</p>
+          <div className="mt-3 space-y-1 text-gray-700">
+            <p><strong>Quantity:</strong> 500 kg</p>
+            <p><strong>Price Range:</strong> LKR 250-280/kg</p>
+            <p><strong>Location:</strong> Kandy</p>
+            <p><strong>Deadline:</strong> 5 days</p>
+            <p className="text-sm text-gray-600"><strong>Requirements:</strong> Medium to large size, fresh harvest</p>
+          </div>
+          <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Respond to Request</button>
         </div>
 
-        <div className="request-card">
-          <span className="status urgent">URGENT</span>
-          <h3>Cabbage</h3>
-          <p className="buyer">Organic Market Co</p>
-          <p><strong>Quantity:</strong> 800 kg</p>
-          <p><strong>Price Range:</strong> LKR 170-200/kg</p>
-          <p><strong>Location:</strong> Galle</p>
-          <p><strong>Deadline:</strong> 2 days</p>
-          <p className="requirements"><strong>Requirements:</strong> Certified organic, no pesticides</p>
-          <button className="respond-btn">Respond to Request</button>
+        <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
+          <span className="inline-flex rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-700">URGENT</span>
+          <h3 className="mt-3 text-2xl font-bold text-gray-900">Cabbage</h3>
+          <p className="text-sm font-semibold text-gray-500">Organic Market Co</p>
+          <div className="mt-3 space-y-1 text-gray-700">
+            <p><strong>Quantity:</strong> 800 kg</p>
+            <p><strong>Price Range:</strong> LKR 170-200/kg</p>
+            <p><strong>Location:</strong> Galle</p>
+            <p><strong>Deadline:</strong> 2 days</p>
+            <p className="text-sm text-gray-600"><strong>Requirements:</strong> Certified organic, no pesticides</p>
+          </div>
+          <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Respond to Request</button>
         </div>
 
-        <div className="request-card">
-          <span className="status open">OPEN</span>
-          <h3>Potatoes</h3>
-          <p className="buyer">Hotel Paradise</p>
-          <p><strong>Quantity:</strong> 600 kg</p>
-          <p><strong>Price Range:</strong> LKR 300-330/kg</p>
-          <p><strong>Location:</strong> Colombo</p>
-          <p><strong>Deadline:</strong> 7 days</p>
-          <p className="requirements"><strong>Requirements:</strong> Uniform size, clean and dry</p>
-          <button className="respond-btn">Respond to Request</button>
+        <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
+          <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">OPEN</span>
+          <h3 className="mt-3 text-2xl font-bold text-gray-900">Potatoes</h3>
+          <p className="text-sm font-semibold text-gray-500">Hotel Paradise</p>
+          <div className="mt-3 space-y-1 text-gray-700">
+            <p><strong>Quantity:</strong> 600 kg</p>
+            <p><strong>Price Range:</strong> LKR 300-330/kg</p>
+            <p><strong>Location:</strong> Colombo</p>
+            <p><strong>Deadline:</strong> 7 days</p>
+            <p className="text-sm text-gray-600"><strong>Requirements:</strong> Uniform size, clean and dry</p>
+          </div>
+          <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Respond to Request</button>
         </div>
 
-        <div className="request-card">
-          <span className="status open">OPEN</span>
-          <h3>Green Beans</h3>
-          <p className="buyer">City Grocers</p>
-          <p><strong>Quantity:</strong> 300 kg</p>
-          <p><strong>Price Range:</strong> LKR 180-220/kg</p>
-          <p><strong>Location:</strong> Kandy</p>
-          <p><strong>Deadline:</strong> 4 days</p>
-          <p className="requirements"><strong>Requirements:</strong> Fresh, tender beans, no damage</p>
-          <button className="respond-btn">Respond to Request</button>
+        <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
+          <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">OPEN</span>
+          <h3 className="mt-3 text-2xl font-bold text-gray-900">Green Beans</h3>
+          <p className="text-sm font-semibold text-gray-500">City Grocers</p>
+          <div className="mt-3 space-y-1 text-gray-700">
+            <p><strong>Quantity:</strong> 300 kg</p>
+            <p><strong>Price Range:</strong> LKR 180-220/kg</p>
+            <p><strong>Location:</strong> Kandy</p>
+            <p><strong>Deadline:</strong> 4 days</p>
+            <p className="text-sm text-gray-600"><strong>Requirements:</strong> Fresh, tender beans, no damage</p>
+          </div>
+          <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Respond to Request</button>
         </div>
 
-        <div className="request-card">
-          <span className="status urgent">URGENT</span>
-          <h3>Bell Peppers</h3>
-          <p className="buyer">Export Foods Inc</p>
-          <p><strong>Quantity:</strong> 400 kg</p>
-          <p><strong>Price Range:</strong> LKR 350-400/kg</p>
-          <p><strong>Location:</strong> Colombo</p>
-          <p><strong>Deadline:</strong> 1 day</p>
-          <p className="requirements"><strong>Requirements:</strong> Export quality, mixed colors</p>
-          <button className="respond-btn">Respond to Request</button>
+        <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
+          <span className="inline-flex rounded-full bg-red-50 px-3 py-1 text-xs font-bold text-red-700">URGENT</span>
+          <h3 className="mt-3 text-2xl font-bold text-gray-900">Bell Peppers</h3>
+          <p className="text-sm font-semibold text-gray-500">Export Foods Inc</p>
+          <div className="mt-3 space-y-1 text-gray-700">
+            <p><strong>Quantity:</strong> 400 kg</p>
+            <p><strong>Price Range:</strong> LKR 350-400/kg</p>
+            <p><strong>Location:</strong> Colombo</p>
+            <p><strong>Deadline:</strong> 1 day</p>
+            <p className="text-sm text-gray-600"><strong>Requirements:</strong> Export quality, mixed colors</p>
+          </div>
+          <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Respond to Request</button>
         </div>
       </section>
     </main>
