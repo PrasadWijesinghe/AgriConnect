@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaArrowRight, FaCalendarDays, FaLocationDot, FaWandMagicSparkles } from 'react-icons/fa6';
+import { FaArrowRight, FaCalendarDays, FaLocationDot, FaWandMagicSparkles, FaLayerGroup, FaChartLine, FaBell } from 'react-icons/fa6';
 import assets from '../assets/assets';
 
 function Home() {
@@ -20,7 +20,6 @@ function Home() {
       </section>
 
       
-
       <section className="relative isolate overflow-hidden bg-[#fef6e8] px-[5%] py-14">
         <div className="mx-auto flex max-w-6xl flex-col gap-12 lg:flex-row lg:items-center lg:gap-16">
           <div className="mx-auto w-full max-w-[380px] flex-shrink-0 lg:mx-0">
@@ -156,31 +155,65 @@ function Home() {
         </div>
       </section>
 
-      <section className="py-16 px-[5%] text-center">
-        <h2 className="text-5xl text-blue-500 mb-10 font-extrabold tracking-wide">Track Every Harvest</h2>
-        <p className="text-xl mb-8">Manage your inventory efficiently with our comprehensive tracking system. Monitor stock levels, active listings, and earnings all in one place.</p>
-        <div className="flex justify-center gap-10 py-12 px-[5%] flex-wrap bg-white">
-          <div className="bg-white py-12 px-10 rounded-[18px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] text-center min-w-[280px] border-t-4 border-green-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(40,167,69,0.2)]">
-            <h3 className="text-5xl text-green-600 mb-3 font-extrabold">2,450 kg</h3>
-            <p className="text-xl font-bold text-gray-800">Total Stock</p>
+      <section className="py-16 px-[5%] bg-gradient-to-r from-[#f4fbf6] to-[#eef7ff]">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
+          <div className="relative rounded-[28px] bg-white/60 shadow-[0_18px_60px_rgba(0,0,0,0.12)] overflow-hidden ring-1 ring-green-50">
+            <img src={assets.image1} alt="Greenhouse inventory tracking" className="h-full w-full object-cover" />
+
+    
+
+          
           </div>
-          <div className="bg-white py-12 px-10 rounded-[18px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] text-center min-w-[280px] border-t-4 border-green-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(40,167,69,0.2)]">
-            <h3 className="text-5xl text-green-600 mb-3 font-extrabold">12</h3>
-            <p className="text-xl font-bold text-gray-800">Active Listings</p>
-          </div>
-          <div className="bg-white py-12 px-10 rounded-[18px] shadow-[0_8px_30px_rgba(0,0,0,0.12)] text-center min-w-[280px] border-t-4 border-green-600 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(40,167,69,0.2)]">
-            <h3 className="text-5xl text-green-600 mb-3 font-extrabold">LKR 185,000</h3>
-            <p className="text-xl font-bold text-gray-800">Revenue This Month</p>
+
+          <div className="space-y-5">
+            <h2 className="text-5xl font-black leading-tight text-[#0f172a]">Track Every Harvest</h2>
+            <p className="text-lg text-gray-700 max-w-xl">Take complete control of your agricultural inventory with powerful analytics, real-time tracking, and intelligent insights that help you maximize profits.</p>
+
+            {[{
+              title: 'Real-Time Tracking',
+              desc: 'Monitor your inventory levels instantly across all storage locations with live updates.',
+              icon: <FaLayerGroup />,
+              tint: 'from-green-500 to-emerald-500',
+            },{
+              title: 'Multi-Location',
+              desc: 'Manage inventory across multiple farms and storage facilities seamlessly',
+              icon: <FaLocationDot />,
+              tint: 'from-blue-500 to-purple-500',
+            },
+            , {
+              title: 'Smart Analytics',
+              desc: 'Get powerful insights on your best-performing crops and revenue trends.',
+              icon: <FaChartLine />,
+              tint: 'from-amber-500 to-orange-500',
+            }, {
+              title: 'Auto Alerts',
+              desc: 'Receive instant notifications when stock runs low or market prices peak.',
+              icon: <FaBell />,
+              tint: 'from-red-500 to-indigo-500',
+            }].map((item) => (
+              <div key={item.title} className="flex items-start gap-4 rounded-[18px] bg-white/80 px-5 py-4 shadow-[0_12px_35px_rgba(0,0,0,0.08)] ring-1 ring-gray-100">
+                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${item.tint} text-white text-xl`}>
+                  {item.icon}
+                </div>
+                <div className="space-y-1">
+                  <p className="m-0 text-lg font-semibold text-gray-900">{item.title}</p>
+                  <p className="m-0 text-sm text-gray-600">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-        <Link to="/inventory" className="inline-block bg-gradient-to-br from-green-600 to-teal-500 text-white py-4 px-12 rounded-full font-bold no-underline mt-8 transition-all duration-[400ms] shadow-[0_8px_20px_rgba(40,167,69,0.35)] border-0 cursor-pointer tracking-wide hover:bg-gradient-to-br hover:from-green-700 hover:to-teal-600 hover:-translate-y-2 hover:shadow-[0_12px_28px_rgba(40,167,69,0.45)]">View Inventory</Link>
-        <h3 className="text-3xl mt-12 mb-6 font-bold">Inventory Dashboard</h3>
-        <ul className="max-w-[600px] mx-auto text-left text-xl space-y-4">
-          <li>Tomatoes: 850 kg In Stock</li>
-          <li>Carrots: 620 kg Listed</li>
-          <li>Cabbage: 480 kg In Stock</li>
-          <li>Potatoes: 500 kg Listed</li>
-        </ul>
+      </section>
+
+      <section className="px-[5%] py-16">
+        <div className="mx-auto max-w-5xl rounded-[26px] bg-gradient-to-r from-emerald-500 to-teal-500 px-10 py-14 text-center text-white shadow-[0_22px_55px_rgba(0,0,0,0.18)]">
+          <h3 className="text-4xl font-black mb-4">Ready to Optimize Your Inventory?</h3>
+          <p className="text-lg opacity-90 mb-10">Join thousands of farmers who are already maximizing their profits with smart inventory management.</p>
+          <Link to="/inventory" className="inline-flex items-center gap-3 rounded-full bg-white px-7 py-3 text-lg font-semibold text-emerald-600 shadow-[0_12px_30px_rgba(0,0,0,0.18)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
+            Start Managing Inventory
+            <FaArrowRight />
+          </Link>
+        </div>
       </section>
 
       <section className="max-w-[900px] my-16 mx-auto p-12 bg-gradient-to-br from-green-50 to-green-100 rounded-[22px] shadow-[0_12px_35px_rgba(40,167,69,0.15)] text-2xl italic text-left border-l-[5px] border-green-600">
