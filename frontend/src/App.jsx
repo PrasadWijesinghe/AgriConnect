@@ -6,6 +6,8 @@ import CropRecommendations from './pages/CropRecommendations';
 import Marketplaces from './pages/Marketplaces';
 import HarvestRequests from './pages/HarvestRequests';
 import Inventory from './pages/Inventory';
+import Login from './pages/Login';
+import Singup from './pages/Singup';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/marketplaces" element={<Marketplaces />} />
         <Route path="/harvest-requests" element={<HarvestRequests />} />
         <Route path="/inventory" element={<Inventory />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Singup />} />
       </Routes>
       <Footer />
     </Router>

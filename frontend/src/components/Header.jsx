@@ -30,9 +30,9 @@ function Header() {
               <li><Link to="/inventory" className={navLinkClass('/inventory')}>Inventory</Link></li>
             </ul>
           </nav>
-          <button className="px-6 py-2.5 rounded-full bg-white text-green-700 font-semibold text-base shadow-md hover:bg-white/95 hover:shadow-lg transition-all duration-200">
+          <Link to="/signup" className="px-6 py-2.5 rounded-full bg-white text-green-700 font-semibold text-base shadow-md hover:bg-white/95 hover:shadow-lg transition-all duration-200">
             Sign Up
-          </button>
+          </Link>
         </div>
       </div>
     </header>
