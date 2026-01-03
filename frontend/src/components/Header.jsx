@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import assets from '../assets/assets';
 
 function Header() {
   const location = useLocation();
@@ -17,7 +18,7 @@ function Header() {
     <header className="sticky top-0 z-50 bg-gradient-to-r from-green-700 to-teal-600 text-white shadow-lg">
       <div className="flex items-center justify-between px-[7%] py-5">
         <Link to="/" className="flex items-center gap-3 text-xl font-bold tracking-wide">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-2xl">🌿</span>
+          <img src={assets.Logo} alt="AgriConnect Logo" className="h-12 w-12 object-contain" />
           <span>AgriConnect</span>
         </Link>
         <div className="flex items-center gap-6">
@@ -30,8 +31,8 @@ function Header() {
               <li><Link to="/inventory" className={navLinkClass('/inventory')}>Inventory</Link></li>
             </ul>
           </nav>
-          <Link to="/signup" className="px-6 py-2.5 rounded-full bg-white text-green-700 font-semibold text-base shadow-md hover:bg-white/95 hover:shadow-lg transition-all duration-200">
-            Sign Up
+          <Link to="/login" className="px-6 py-2.5 rounded-full bg-white text-green-700 font-semibold text-base shadow-md hover:bg-white/95 hover:shadow-lg transition-all duration-200">
+            Sign In
           </Link>
         </div>
       </div>
