@@ -1,8 +1,75 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FaRobot, FaXmark, FaPaperPlane } from 'react-icons/fa6';
 
 function ChatBot() {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      text: "Hello! 👋 I'm AgriBot, your agricultural assistant. How can I help you today?",
+      sender: 'bot',
+    },
+  ]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const sendMessage = async () => {
+    if (!input.trim()) return;
+
+    // Add user message
+    const userMessage = {
+      id: messages.length + 1,
+      text: input,
+      sender: 'user',
+    };
+    setMessages((prev) => [...prev, userMessage]);
+    setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:8000/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: input }),
+      });
+
+      const data = await response.json();
+      const botMessage = {
+        id: messages.length + 2,
+        text: data.answer || "Sorry, I couldn't get a response. Please try again.",
+        sender: 'bot',
+      };
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error:', error);
+      const errorMessage = {
+        id: messages.length + 2,
+        text: "Sorry, there was an error connecting to the server. Please make sure the backend is running.",
+        sender: 'bot',
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
 
   return (
     <>
@@ -41,14 +108,42 @@ function ChatBot() {
           {/* Chat Messages */}
           <div className="flex-1 p-6 overflow-y-auto bg-gray-50">
             <div className="space-y-4">
-              <div className="flex gap-3">
-                <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                  <FaRobot className="text-green-600 text-sm" />
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex gap-3 ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  {message.sender === 'bot' && (
+                    <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                      <FaRobot className="text-green-600 text-sm" />
+                    </div>
+                  )}
+                  <div
+                    className={`rounded-[16px] px-4 py-3 shadow-sm max-w-[260px] ${
+                      message.sender === 'user'
+                        ? 'bg-green-600 text-white rounded-br-none'
+                        : 'bg-white text-gray-800 rounded-tl-none'
+                    }`}
+                  >
+                    <p className="text-sm m-0">{message.text}</p>
+                  </div>
                 </div>
-                <div className="bg-white rounded-[16px] rounded-tl-none px-4 py-3 shadow-sm max-w-[260px]">
-                  <p className="text-sm text-gray-800 m-0">Hello! 👋 I'm AgriBot, your agricultural assistant. How can I help you today?</p>
+              ))}
+              {isLoading && (
+                <div className="flex gap-3">
+                  <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                    <FaRobot className="text-green-600 text-sm" />
+                  </div>
+                  <div className="bg-white rounded-[16px] rounded-tl-none px-4 py-3 shadow-sm">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+              <div ref={messagesEndRef} />
             </div>
           </div>
 
@@ -58,9 +153,17 @@ function ChatBot() {
               <input
                 type="text"
                 placeholder="Type your message..."
-                className="flex-1 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-green-500 text-sm"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyPress={handleKeyPress}
+                disabled={isLoading}
+                className="flex-1 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-green-500 text-sm disabled:bg-gray-100"
               />
-              <button className="h-[44px] w-[44px] rounded-full bg-green-600 hover:bg-green-700 flex items-center justify-center transition-colors">
+              <button
+                onClick={sendMessage}
+                disabled={isLoading || !input.trim()}
+                className="h-[44px] w-[44px] rounded-full bg-green-600 hover:bg-green-700 flex items-center justify-center transition-colors disabled:bg-gray-400"
+              >
                 <FaPaperPlane className="text-white text-sm" />
               </button>
             </div>
