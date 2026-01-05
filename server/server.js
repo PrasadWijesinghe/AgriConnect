@@ -15,6 +15,19 @@ app.use(cors({
   credentials: true
 }));
 app.use(cookieParser());
+
+// Log all requests
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`, req.body);
+  next();
+});
+
 app.use('/api/auth', authRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Server Error:', err);
+  res.status(500).json({ message: 'Server error', error: err.message });
+});
 
 app.listen(port, ()=> console.log(`Server started on PORT: ${port}`))
