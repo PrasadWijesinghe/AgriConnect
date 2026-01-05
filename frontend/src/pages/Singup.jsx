@@ -39,9 +39,25 @@ export default function Signup() {
     if (Object.keys(newErrors).length === 0) {
       setIsLoading(true);
       try {
+        const response = await fetch('http://localhost:4000/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, password, phone, role }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          setErrors({ submit: data.message || 'Signup failed. Please try again.' });
+          return;
+        }
+
+        // Save user info to localStorage
         const user = { name, email, phone, role };
         localStorage.setItem('agriUser', JSON.stringify(user));
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        
         navigate('/login');
       } catch (error) {
         setErrors({ submit: 'Signup failed. Please try again.' });
