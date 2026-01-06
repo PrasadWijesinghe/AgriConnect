@@ -29,9 +29,32 @@ export default function Login() {
     if (Object.keys(newErrors).length === 0) {
       setIsLoading(true);
       try {
-        const user = { email, role };
-        localStorage.setItem('agriUser', JSON.stringify(user));
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        const response = await fetch('http://localhost:4000/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          setErrors({ submit: errorData.message || 'Login failed. Please try again.' });
+          return;
+        }
+
+        const data = await response.json();
+        
+        // Store token and user info
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('agriUser', JSON.stringify({
+          _id: data.user._id,
+          name: data.user.name,
+          email: data.user.email,
+          role: data.user.role,
+        }));
+        
         navigate('/harvest-requests');
       } catch (error) {
         setErrors({ submit: 'Login failed. Please try again.' });
