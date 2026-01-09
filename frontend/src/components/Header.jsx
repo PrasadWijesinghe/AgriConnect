@@ -67,7 +67,7 @@ function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-r from-green-700 to-teal-600 text-white shadow-lg">
+    <header className="sticky top-0 z-50 bg-linear-to-r from-green-700 to-teal-600 text-white shadow-lg">
       <div className="flex items-center justify-between px-[7%] py-5">
         <Link to="/" className="flex items-center gap-3 text-xl font-bold tracking-wide">
           <img src={assets.Logo} alt="AgriConnect Logo" className="h-12 w-12 object-contain" />
@@ -80,7 +80,9 @@ function Header() {
               <li><Link to="/crop-recommendations" className={navLinkClass('/crop-recommendations')}>Crop Recommendations</Link></li>
               <li><Link to="/marketplaces" className={navLinkClass('/marketplaces')}>Marketplaces</Link></li>
               <li><Link to="/harvest-requests" className={navLinkClass('/harvest-requests')}>Harvest Requests</Link></li>
-              <li><Link to="/inventory" className={navLinkClass('/inventory')}>Inventory</Link></li>
+              {(!isLoggedIn || user?.role === 'farmer') && (
+                <li><Link to="/inventory" className={navLinkClass('/inventory')}>Inventory</Link></li>
+              )}
             </ul>
           </nav>
           {isLoggedIn ? (
