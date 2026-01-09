@@ -80,9 +80,7 @@ function Header() {
               <li><Link to="/crop-recommendations" className={navLinkClass('/crop-recommendations')}>Crop Recommendations</Link></li>
               <li><Link to="/marketplaces" className={navLinkClass('/marketplaces')}>Marketplaces</Link></li>
               <li><Link to="/harvest-requests" className={navLinkClass('/harvest-requests')}>Harvest Requests</Link></li>
-              {(!isLoggedIn || user?.role === 'farmer') && (
-                <li><Link to="/inventory" className={navLinkClass('/inventory')}>Inventory</Link></li>
-              )}
+              <li><Link to="/inventory" className={navLinkClass('/inventory')}>Inventory</Link></li>
             </ul>
           </nav>
           {isLoggedIn ? (
@@ -92,7 +90,7 @@ function Header() {
                 className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-green-700 font-semibold text-base shadow-md hover:bg-white/95 hover:shadow-lg transition-all duration-200"
               >
                 <FaUser className="h-5 w-5" />
-                <span className="capitalize">{user?.role}</span>
+                <span className="capitalize">{user?.name || 'Account'}</span>
               </button>
               {showProfileMenu && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">

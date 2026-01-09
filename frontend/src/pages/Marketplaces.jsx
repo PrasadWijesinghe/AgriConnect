@@ -1,6 +1,31 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function Marketplaces() {
+  const readIsLoggedIn = () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      const userData = localStorage.getItem('agriUser');
+      return Boolean(token && userData);
+    } catch {
+      return false;
+    }
+  };
+
+  const [isLoggedIn, setIsLoggedIn] = useState(() => readIsLoggedIn());
+
+  useEffect(() => {
+    const sync = () => setIsLoggedIn(readIsLoggedIn());
+    window.addEventListener('agri-auth-changed', sync);
+    window.addEventListener('storage', sync);
+    window.addEventListener('focus', sync);
+    return () => {
+      window.removeEventListener('agri-auth-changed', sync);
+      window.removeEventListener('storage', sync);
+      window.removeEventListener('focus', sync);
+    };
+  }, []);
+
   return (
     <main className="mx-auto max-w-6xl px-6 py-16">
       <section className="rounded-3xl bg-white px-8 py-10 shadow-xl ring-1 ring-gray-100 text-center">
@@ -8,7 +33,7 @@ function Marketplaces() {
         <h1 className="text-4xl font-extrabold text-gray-900">Marketplaces</h1>
         <p className="mt-3 text-lg text-gray-600">Choose your selling strategy - auction your harvest or sell at real-time market prices.</p>
         <div className="mt-6 flex justify-center gap-3">
-          <button className="rounded-full bg-gradient-to-r from-green-600 to-teal-500 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg">Create Auction</button>
+          <button className="rounded-full bg-linear-to-r from-green-600 to-teal-500 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg">Create Auction</button>
           <Link to="/harvest-requests" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-gray-800 ring-1 ring-gray-200 transition hover:bg-gray-50">View Requests</Link>
         </div>
       </section>
@@ -35,7 +60,11 @@ function Marketplaces() {
               <p><strong>Total Bids:</strong> 12</p>
               <p className="text-sm text-gray-500">Sunil Perera • Kandy</p>
             </div>
-            <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Place Bid</button>
+            {isLoggedIn ? (
+              <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Place Bid</button>
+            ) : (
+              <Link to="/login" className="mt-4 block w-full rounded-xl bg-green-600 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Sign In to Bid</Link>
+            )}
           </div>
 
           <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
@@ -50,7 +79,11 @@ function Marketplaces() {
               <p><strong>Total Bids:</strong> 8</p>
               <p className="text-sm text-gray-500">Nimal Silva • Colombo</p>
             </div>
-            <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Place Bid</button>
+            {isLoggedIn ? (
+              <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Place Bid</button>
+            ) : (
+              <Link to="/login" className="mt-4 block w-full rounded-xl bg-green-600 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Sign In to Bid</Link>
+            )}
           </div>
 
           <div className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-gray-100">
@@ -65,7 +98,11 @@ function Marketplaces() {
               <p><strong>Total Bids:</strong> 15</p>
               <p className="text-sm text-gray-500">Kamala Fernando • Galle</p>
             </div>
-            <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Place Bid</button>
+            {isLoggedIn ? (
+              <button className="mt-4 w-full rounded-xl bg-green-600 px-4 py-3 font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Place Bid</button>
+            ) : (
+              <Link to="/login" className="mt-4 block w-full rounded-xl bg-green-600 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:bg-green-700">Sign In to Bid</Link>
+            )}
           </div>
         </div>
       </section>

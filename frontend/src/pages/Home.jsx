@@ -9,7 +9,7 @@ function Home() {
       <section className="text-center py-20 px-[5%] bg-gradient-to-br from-black/40 to-blue-500/25 text-white flex flex-col justify-center items-center min-h-[80vh] relative bg-cover bg-center bg-fixed" style={{ backgroundImage: `url(${assets.bg_home})` }}>
         
         <h1 className="text-7xl font-black mb-8 drop-shadow-[0_6px_16px_rgba(0,0,0,0.5)] tracking-wide leading-tight">Grow Smarter<br/>Sell Better<br/>Earn More</h1>
-        <p className="text-3xl mb-12 drop-shadow-[0_3px_10px_rgba(0,0,0,0.4)] font-medium max-w-[700px]">AI-powered crop recommendations and real-time market intelligence for modern farmers</p>
+        <p className="text-3xl mb-12 drop-shadow-[0_3px_10px_rgba(0,0,0,0.4)] font-medium max-w-[700px]">AI-powered crop recommendations and real-time market intelligence for modern agriculture</p>
         <div className="flex gap-8 justify-center flex-wrap mb-12">
           <Link to="/crop-recommendations" className="inline-block py-5 px-11 rounded-full font-bold no-underline transition-all duration-[400ms] text-lg tracking-wide border-0 cursor-pointer bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-[0_10px_25px_rgba(40,167,69,0.35)] hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(40,167,69,0.45)]">Get Crop Recommendations →</Link>
           <Link to="/marketplaces" className="inline-block py-5 px-11 rounded-full font-bold no-underline transition-all duration-[400ms] text-lg tracking-wide border-0 cursor-pointer bg-white/15 text-white border-2 border-white/50 shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:bg-white/25 hover:border-white/80 hover:-translate-y-2">Explore Marketplace</Link>
@@ -70,7 +70,7 @@ function Home() {
             <h3 className="text-yellow-500 text-xl uppercase tracking-wide mb-2">HIGHEST BIDDER WINS</h3>
             <h4 className="text-3xl mb-6">Auction Your Harvest</h4>
             <ul className="my-6 space-y-4">
-              <li className="flex items-start gap-3"><span className="text-green-600">✓</span><span>Set your minimum price and let buyers compete</span></li>
+              <li className="flex items-start gap-3"><span className="text-green-600">✓</span><span>Set your minimum price and let others compete</span></li>
               <li className="flex items-start gap-3"><span className="text-green-600">✓</span><span>Get the best possible price for your crops</span></li>
               <li className="flex items-start gap-3"><span className="text-green-600">✓</span><span>Transparent bidding process with real-time updates</span></li>
               <li className="flex items-start gap-3"><span className="text-green-600">✓</span><span>Secure payment upon auction completion</span></li>
@@ -209,7 +209,7 @@ function Home() {
       <section className="px-[5%] py-16">
         <div className="mx-auto max-w-5xl rounded-[26px] bg-gradient-to-r from-emerald-500 to-teal-500 px-10 py-14 text-center text-white shadow-[0_22px_55px_rgba(0,0,0,0.18)]">
           <h3 className="text-4xl font-black mb-4">Ready to Optimize Your Inventory?</h3>
-          <p className="text-lg opacity-90 mb-10">Join thousands of farmers who are already maximizing their profits with smart inventory management.</p>
+          <p className="text-lg opacity-90 mb-10">Join thousands of users who are already maximizing their profits with smart inventory management.</p>
           <Link to="/inventory" className="inline-flex items-center gap-3 rounded-full bg-white px-7 py-3 text-lg font-semibold text-emerald-600 shadow-[0_12px_30px_rgba(0,0,0,0.18)] transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
             Start Managing Inventory
             <FaArrowRight />

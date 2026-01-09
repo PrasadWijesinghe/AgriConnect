@@ -8,7 +8,6 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
-  const [role, setRole] = useState('farmer');
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ export default function Signup() {
       newErrors.email = 'Invalid email format';
     }
     if (!phone) newErrors.phone = 'Phone is required';
-    if (phone && !/^[\d\s\-\+()]{10,}$/.test(phone)) {
+    if (phone && !/^[\d\s\-+()]{10,}$/.test(phone)) {
       newErrors.phone = 'Invalid phone number';
     }
     if (!password) newErrors.password = 'Password is required';
@@ -44,7 +43,7 @@ export default function Signup() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name, email, password, phone, role }),
+          body: JSON.stringify({ name, email, password, phone }),
         });
 
         const data = await response.json();
@@ -54,12 +53,12 @@ export default function Signup() {
           return;
         }
 
-        // Save user info to localStorage
-        const user = { name, email, phone, role };
+        // Save user info to localStorage (no role selection)
+        const user = { name, email, phone };
         localStorage.setItem('agriUser', JSON.stringify(user));
         
         navigate('/login');
-      } catch (error) {
+      } catch {
         setErrors({ submit: 'Signup failed. Please try again.' });
       } finally {
         setIsLoading(false);
@@ -70,7 +69,7 @@ export default function Signup() {
   return (
     <div className="min-h-screen bg-cover bg-center bg-fixed flex items-center justify-center px-4 py-8 relative" style={{ backgroundImage: `url(${assets.bg_home})` }}>
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-black/40 via-black/30 to-black/40"></div>
       
       <div className="max-w-md w-full bg-green-50/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 relative z-10 transform transition-all duration-300 hover:shadow-3xl">
         {/* Header Section */}
@@ -78,9 +77,9 @@ export default function Signup() {
           <div className="inline-flex items-center justify-center w-20 h-20 bg-green-600 border-2 border-green-300 rounded-full mb-4 shadow-lg">
             <img src={assets.Logo} alt="AgriConnect Logo" className="h-16 w-16 object-contain" />
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent leading-snug">Join AgriConnect</h1>
+          <h1 className="text-4xl font-bold bg-linear-to-r from-green-600 to-green-500 bg-clip-text text-transparent leading-snug">Join AgriConnect</h1>
           <p className="text-gray-600 mt-2 font-medium">Create your account today</p>
-          <p className="text-gray-500 text-sm">Start connecting with farmers & buyers</p>
+          <p className="text-gray-500 text-sm">Start connecting and trading smarter</p>
         </div>
 
         {errors.submit && (
@@ -90,33 +89,6 @@ export default function Signup() {
         )}
 
         <form onSubmit={handleSignup} className="space-y-5">
-          <div className="relative">
-            <label className="block text-sm font-semibold text-gray-800 mb-3">I am a</label>
-            <div className="flex gap-3">
-              {[
-                { value: 'farmer', label: 'Farmer', emoji: '🚜' },
-                { value: 'buyer', label: 'Buyer', emoji: '🛒' }
-              ].map(option => (
-                <label key={option.value} className="flex-1 relative cursor-pointer">
-                  <input
-                    type="radio"
-                    value={option.value}
-                    checked={role === option.value}
-                    onChange={(e) => setRole(e.target.value)}
-                    className="sr-only"
-                  />
-                  <div className={`p-3 rounded-xl text-center border-2 transition-all duration-200 ${
-                    role === option.value
-                      ? 'border-green-500 bg-green-50'
-                      : 'border-gray-200 bg-gray-50 hover:border-green-300'
-                  }`}>
-                    <span className="text-2xl block mb-1">{option.emoji}</span>
-                    <span className="text-sm font-medium text-gray-700">{option.label}</span>
-                  </div>
-                </label>
-              ))}
-            </div>
-          </div>
 
           <div className="relative">
             <label className="block text-sm font-semibold text-gray-800 mb-2">Full Name</label>
@@ -230,7 +202,7 @@ export default function Signup() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-xl font-bold hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
+            className="w-full bg-linear-to-r from-green-500 to-green-600 text-white py-3 rounded-xl font-bold hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
           >
             {isLoading ? 'Creating Account...' : 'Create Account'}
           </button>

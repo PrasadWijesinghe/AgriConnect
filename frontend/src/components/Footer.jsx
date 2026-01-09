@@ -17,7 +17,7 @@ function Footer() {
               <span>AgriConnect</span>
             </div>
             <p className="text-sm text-white/90">
-              Empowering farmers with technology to grow smarter, sell better, and earn more.
+              Empowering the agricultural community with technology to grow smarter, sell better, and earn more.
             </p>
           </div>
 

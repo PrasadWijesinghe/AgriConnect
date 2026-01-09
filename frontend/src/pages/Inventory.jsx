@@ -56,7 +56,7 @@ function Inventory() {
     const run = () => {
       if (cancelled) return;
 
-      if (!user || user.role !== 'farmer' || !storageKey) {
+      if (!user || !storageKey) {
         setItems([]);
         setIsFormOpen(false);
         setEditingId(null);
@@ -116,7 +116,7 @@ function Inventory() {
   const formatLkr = (value) => `LKR ${new Intl.NumberFormat('en-US').format(Math.round(value))}`;
 
   useEffect(() => {
-    if (!user || user.role !== 'farmer' || !storageKey) return;
+    if (!user || !storageKey) return;
     try {
       localStorage.setItem(storageKey, JSON.stringify(items));
     } catch {
@@ -131,11 +131,11 @@ function Inventory() {
         <section className="rounded-3xl bg-white px-8 py-10 shadow-xl ring-1 ring-gray-100">
           <p className="text-sm font-semibold uppercase tracking-wide text-green-600">Inventory</p>
           <h1 className="mt-2 text-4xl font-extrabold text-gray-900">Show Your Inventory</h1>
-          <p className="mt-3 text-gray-600">Sign in as a farmer to add, edit, and delete your inventory items.</p>
+          <p className="mt-3 text-gray-600">Sign in to add, edit, and delete your inventory items.</p>
 
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             {[
-              { title: 'Step 1', text: 'Sign in to your farmer account' },
+              { title: 'Step 1', text: 'Sign in to your account' },
               { title: 'Step 2', text: 'Add your harvest items (crop, qty, date)' },
               { title: 'Step 3', text: 'List items with a price if needed' },
               { title: 'Step 4', text: 'Track stock, listings, and earnings' },
@@ -212,26 +212,6 @@ function Inventory() {
     setItems((prev) => prev.filter((it) => it.id !== id));
   };
 
-  // If logged-in user is a buyer, show a simple access message
-  if (user && user.role !== 'farmer') {
-    return (
-      <main className="mx-auto max-w-3xl px-6 py-16">
-        <div className="rounded-2xl bg-white p-10 shadow-xl ring-1 ring-gray-100 text-center">
-          <h1 className="text-3xl font-extrabold text-gray-900">Inventory is for Farmers</h1>
-          <p className="mt-3 text-gray-600">Your account is a buyer account, so you can’t access inventory management.</p>
-          <div className="mt-8 flex justify-center">
-            <Link
-              to="/"
-              className="rounded-full bg-linear-to-r from-green-600 to-teal-500 px-8 py-3 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg"
-            >
-              Go to Home
-            </Link>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main className="mx-auto max-w-6xl px-6 py-16">
       <header className="flex flex-col gap-3 text-center md:text-left">
@@ -267,7 +247,7 @@ function Inventory() {
         <section className="mt-6 rounded-2xl bg-white p-6 shadow-xl ring-1 ring-gray-100">
           <div className="flex flex-col gap-1">
             <h2 className="text-xl font-bold text-gray-900">{editingId ? 'Edit Item' : 'Add Item'}</h2>
-            <p className="text-sm text-gray-600">Only visible to your farmer account.</p>
+            <p className="text-sm text-gray-600">Visible only when you’re signed in.</p>
           </div>
 
           {formError && (

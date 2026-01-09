@@ -6,7 +6,6 @@ import assets from '../assets/assets';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('farmer');
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -96,7 +95,6 @@ export default function Login() {
           _id: data.user._id,
           name: data.user.name,
           email: data.user.email,
-          role: data.user.role,
         };
         localStorage.setItem('agriUser', JSON.stringify(userToStore));
         setLoggedInUser(userToStore);
@@ -128,18 +126,18 @@ export default function Login() {
       className="min-h-screen bg-cover bg-center bg-fixed flex items-center justify-center px-4 py-12 relative"
       style={{ backgroundImage: `url(${assets.bg_home})` }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40"></div>
+      <div className="absolute inset-0 bg-linear-to-br from-black/40 via-black/30 to-black/40"></div>
 
       <div className="max-w-md w-full bg-green-50/95 backdrop-blur-sm rounded-3xl shadow-2xl p-10 relative z-10 transform transition-all duration-300 hover:shadow-3xl my-8">
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-green-600 border-2 border-green-300 rounded-full mb-4 shadow-lg">
             <img src={assets.Logo} alt="AgriConnect Logo" className="h-16 w-16 object-contain" />
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent leading-snug">
+          <h1 className="text-4xl font-bold bg-linear-to-r from-green-600 to-green-500 bg-clip-text text-transparent leading-snug">
             AgriConnect
           </h1>
           <p className="text-gray-600 mt-2 font-medium">Welcome Back</p>
-          <p className="text-gray-500 text-sm">Where Farmers Meet Buyers</p>
+          <p className="text-gray-500 text-sm">Welcome to AgriConnect</p>
         </div>
 
         {errors.submit && (
@@ -151,36 +149,6 @@ export default function Login() {
         {!loggedInUser ? (
           <>
             <form onSubmit={handleLogin} className="space-y-6">
-              <div className="relative">
-                <label className="block text-sm font-semibold text-gray-800 mb-3">I am a</label>
-                <div className="flex gap-3">
-                  {[
-                    { value: 'farmer', label: 'Farmer', emoji: '🚜' },
-                    { value: 'buyer', label: 'Buyer', emoji: '🛒' },
-                  ].map((option) => (
-                    <label key={option.value} className="flex-1 relative cursor-pointer">
-                      <input
-                        type="radio"
-                        value={option.value}
-                        checked={role === option.value}
-                        onChange={(e) => setRole(e.target.value)}
-                        className="sr-only"
-                      />
-                      <div
-                        className={`p-3 rounded-xl text-center border-2 transition-all duration-200 ${
-                          role === option.value
-                            ? 'border-green-500 bg-green-50'
-                            : 'border-gray-200 bg-gray-50 hover:border-green-300'
-                        }`}
-                      >
-                        <span className="text-2xl block mb-1">{option.emoji}</span>
-                        <span className="text-sm font-medium text-gray-700">{option.label}</span>
-                      </div>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
               <div className="relative">
                 <label className="block text-sm font-semibold text-gray-800 mb-2">Email Address</label>
                 <div className="relative group">
@@ -234,7 +202,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-xl font-bold hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
+                className="w-full bg-linear-to-r from-green-500 to-green-600 text-white py-3 rounded-xl font-bold hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-0.5"
               >
                 {isLoading ? 'Logging in...' : 'Login'}
               </button>
@@ -256,24 +224,21 @@ export default function Login() {
         ) : (
           <div className="mt-2 rounded-2xl border-2 border-green-200 bg-green-50 p-5">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-green-600 flex items-center justify-center shrink-0">
                 <FaUser className="text-white" />
               </div>
               <div className="flex-1">
                 <p className="text-sm font-semibold text-gray-800">Profile</p>
                 <p className="text-sm text-gray-700 mt-1 truncate">{loggedInUser.name || 'User'}</p>
                 <p className="text-xs text-gray-600 truncate">{loggedInUser.email}</p>
-                <p className="text-xs text-gray-600 mt-1">
-                  Role: <span className="font-medium text-gray-700">{loggedInUser.role}</span>
-                </p>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3 mt-4">
               <button
                 type="button"
-                onClick={() => navigate('/harvest-requests')}
-                className="py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-200"
+                onClick={() => navigate('/')}
+                className="py-3 rounded-xl font-semibold text-white bg-linear-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 transition-all duration-200"
               >
                 Continue
               </button>
