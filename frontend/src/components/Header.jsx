@@ -11,12 +11,39 @@ function Header() {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    const userData = localStorage.getItem('agriUser');
-    if (token && userData) {
-      setIsLoggedIn(true);
-      setUser(JSON.parse(userData));
-    }
+    const syncAuthFromStorage = () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        const userData = localStorage.getItem('agriUser');
+        if (token && userData) {
+          setIsLoggedIn(true);
+          setUser(JSON.parse(userData));
+        } else {
+          setIsLoggedIn(false);
+          setUser(null);
+          setShowProfileMenu(false);
+        }
+      } catch {
+        setIsLoggedIn(false);
+        setUser(null);
+        setShowProfileMenu(false);
+      }
+    };
+
+    syncAuthFromStorage();
+
+    const onAuthChanged = () => syncAuthFromStorage();
+    window.addEventListener('agri-auth-changed', onAuthChanged);
+    // When localStorage changes in another tab
+    window.addEventListener('storage', onAuthChanged);
+    // Helps when coming back to the tab
+    window.addEventListener('focus', onAuthChanged);
+
+    return () => {
+      window.removeEventListener('agri-auth-changed', onAuthChanged);
+      window.removeEventListener('storage', onAuthChanged);
+      window.removeEventListener('focus', onAuthChanged);
+    };
   }, []);
 
   const handleLogout = () => {
@@ -25,6 +52,7 @@ function Header() {
     setIsLoggedIn(false);
     setUser(null);
     setShowProfileMenu(false);
+    window.dispatchEvent(new Event('agri-auth-changed'));
     navigate('/');
   };
 
