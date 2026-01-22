@@ -1,5 +1,11 @@
 {
-  "dependencies": {
-    "react-router-dom": "^7.11.0"
+  "name": "agriconnect",
+  "private": true,
+  "scripts": {
+    "frontend:install": "npm --prefix frontend install --include=dev",
+    "frontend:build": "npm --prefix frontend run build",
+    "build": "npm run frontend:install && npm run frontend:build",
+    "dev": "npm --prefix frontend run dev",
+    "preview": "npm --prefix frontend run preview"
   }
 }
