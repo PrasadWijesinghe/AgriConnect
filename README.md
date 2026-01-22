@@ -135,20 +135,6 @@ Contributions are welcome!
 
 ---
 
-## 📄 License
 
-This project is licensed under the **MIT License**.
 
----
-
-## 📬 Contact
-
-For suggestions or collaboration:
-
-* GitHub: `your-username`
-* Email: `your-email@example.com`
-
----
-
-🌾 *Empowering farmers through technology and smart market access* 🌱
 
